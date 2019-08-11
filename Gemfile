@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'delayed_job_active_record'
+gem "rails_event_store"
 gem 'interactor', '~> 3.0'
 gem 'jbuilder', '~> 2.7'
 gem 'pg'
