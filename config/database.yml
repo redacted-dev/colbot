@@ -1,25 +1,23 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
+# Note: pool property must be at least equal to sidekiq's concurrency setting:
+# see "concurrency" attribute in sidekiq.yml
 #
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
+# https://github.com/mperham/sidekiq/wiki/Advanced-Options#concurrency
+
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: postgresql
+  host: localhost
+  pool: <%= ENV['DB_POOL'] || 25 %>
+  reaping_frequency: <%= ENV['DB_REAP_FREQ'] || 10 %>
+  variables:
+    statement_timeout: 5000
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: colonesapp_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: colonesapp_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
