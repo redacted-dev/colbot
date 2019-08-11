@@ -74,6 +74,11 @@ GEM
       rake (< 13.0)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    delayed_job (4.1.8.beta1)
+      activesupport (>= 3.0, < 6.1)
+    delayed_job_active_record (4.1.4.beta1)
+      activerecord (>= 3.0, < 6.1)
+      delayed_job (>= 3.0, < 5)
     erubi (1.8.0)
     ffi (1.11.1)
     figaro (1.1.1)
@@ -173,6 +178,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  delayed_job_active_record
   figaro
   interactor (~> 3.0)
   jbuilder (~> 2.7)
