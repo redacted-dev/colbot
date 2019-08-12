@@ -1,8 +1,11 @@
 class ExchangeRate < ApplicationRecord
-  enum type: {
+  enum category: {
       buy: 'buy',
       sell: 'sell'
-  }, _prefix: :type
+  }, _prefix: :category
 
-  validates :type, inclusion: { in: types.values }
+  validates :category, inclusion: { in: categories.values }
+
+  scope :last_buy, -> { category_buy&.last }
+  scope :last_sell, -> { category_sell&.last }
 end
