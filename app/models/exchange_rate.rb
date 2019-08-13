@@ -7,6 +7,7 @@ class ExchangeRate < ApplicationRecord
   }, _prefix: :category
 
   validates :category, inclusion: { in: categories.values }
+  validates :amount, presence: true
 
   scope :last_buy, -> { category_buy&.last }
   scope :last_sell, -> { category_sell&.last }

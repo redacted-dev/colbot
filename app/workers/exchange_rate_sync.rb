@@ -14,7 +14,7 @@ class ExchangeRateSync
   end
 
   def max_attempts
-    1
+    3
   end
 
   def max_run_time
@@ -30,7 +30,15 @@ class ExchangeRateSync
   end
 
   def reschedule_at(current_time, _attempts)
-    current_time + 5.seconds
+    current_time + 60.seconds
+  end
+
+  def error(job, exception)
+    #//TODO sentry
+  end
+
+  def failure(job)
+    #// TODO sentry
   end
 
   private
