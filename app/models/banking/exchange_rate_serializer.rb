@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Banking
   class ExchangeRateSerializer < ActiveModel::Serializer
     include Parser
