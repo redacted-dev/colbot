@@ -11,7 +11,7 @@ module ExchangeRateCommands
       ensure_context_includes :resource
       return if current[:exchange_rate].nil?
 
-      if last_buy.amount != current[:buy]
+      if buy.last&.amount != current[:buy]
         exchange_buy = new(
           category: categories[:buy],
           amount: current[:buy]
@@ -20,7 +20,7 @@ module ExchangeRateCommands
         context.fail!(message: 'Failed saving record.') unless exchange_buy.save
       end
 
-      if last_sell.amount != current[:sell]
+      if sell.last&.amount != current[:sell]
         exchange_sell = new(
           category: categories[:sell],
           amount: current[:sell]
@@ -32,7 +32,7 @@ module ExchangeRateCommands
 
     private
 
-    delegate :new, :categories, :last_buy, :last_sell, to: :ExchangeRate
+    delegate :new, :categories, :buy, :sell, to: :ExchangeRate
 
     def current
       @_current ||= Banking::ExchangeRateSerializer.new(resource).as_json

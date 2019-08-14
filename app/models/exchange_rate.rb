@@ -9,6 +9,6 @@ class ExchangeRate < ApplicationRecord
   validates :category, inclusion: { in: categories.values }
   validates :amount, presence: true
 
-  scope :last_buy, -> { category_buy&.last }
-  scope :last_sell, -> { category_sell&.last }
+  scope :buy, -> { where(category: categories[:buy]) }
+  scope :sell, -> { where(category: categories[:sell]) }
 end

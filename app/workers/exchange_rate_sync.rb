@@ -10,11 +10,11 @@ class ExchangeRateSync
   end
 
   def after
-    Delayed::Job.enqueue ::ExchangeRateSync.new(Banking::Bac), queue: 'exchangerate_sync'
+    # Delayed::Job.enqueue ExchangeRateSync.new(bank), queue: 'exchangerate_sync'
   end
 
   def max_attempts
-    3
+    1
   end
 
   def max_run_time
@@ -34,11 +34,11 @@ class ExchangeRateSync
   end
 
   def error(job, exception)
-    #//TODO sentry
+    # //TODO sentry
   end
 
   def failure(job)
-    #// TODO sentry
+    # // TODO sentry
   end
 
   private

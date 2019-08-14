@@ -6,10 +6,10 @@ class RootController < ApplicationController
   end
 
   def last_buy
-    @_last_buy ||= ExchangeRatePresenter.present(ExchangeRate.last_buy)
+    @_last_buy ||= ExchangeRatePresenter.present(ExchangeRate.buy.last)
   end
 
   def last_sell
-    @_last_sell ||= ExchangeRatePresenter.present(ExchangeRate.last_sell)
+    @_last_sell ||= ExchangeRatePresenter.present(ExchangeRate.sell.last)
   end
 end
