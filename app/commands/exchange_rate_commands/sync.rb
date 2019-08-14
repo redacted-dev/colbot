@@ -11,7 +11,7 @@ module ExchangeRateCommands
       ensure_context_includes :resource
       return if current[:exchange_rate].nil?
 
-      if buy == current[:buy]
+      if buy != current[:buy]
         exchange_buy = new(
           category: categories[:buy],
           amount: current[:buy]
@@ -24,7 +24,7 @@ module ExchangeRateCommands
         end
       end
 
-      if sell == current[:sell]
+      if sell != current[:sell]
         exchange_sell = new(
           category: categories[:sell],
           amount: current[:sell]
