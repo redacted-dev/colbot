@@ -4,6 +4,7 @@ module ExchangeRateCommands
   class Sync
     include Interactor
     include Ensure
+    include Syncable
 
     delegate :resource, to: :context
 
@@ -11,31 +12,8 @@ module ExchangeRateCommands
       ensure_context_includes :resource
       return if current[:exchange_rate].nil?
 
-      if buy != current[:buy]
-        exchange_buy = new(
-          category: categories[:buy],
-          amount: current[:buy]
-        )
-
-        if exchange_buy.save
-          publish_success(:buy)
-        else
-          context.fail!(message: 'Failed saving record.')
-        end
-      end
-
-      if sell != current[:sell]
-        exchange_sell = new(
-          category: categories[:sell],
-          amount: current[:sell]
-        )
-
-        if exchange_sell.save
-          publish_success(:sell)
-        else
-          context.fail!(message: 'Failed saving record.')
-        end
-      end
+      validate_synchrony(category: :buy)
+      validate_synchrony(category: :sell)
     end
 
     private
