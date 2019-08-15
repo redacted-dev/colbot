@@ -14,7 +14,7 @@ module EventHandlers
 
     def tweet
       "Update: #{type} #{verb} #{difference} colones.\n" \
-      "Valor actual: #{amount}.\n" + '#beta_test #tipodecambio $crc $usd'
+      "Valor actual: #{amount}.\n" + '#tipodecambio $crc $usd'
     end
 
     def type
