@@ -7,3 +7,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+ExchangeRate.new(category: 'buy', amount: '56500')
+ExchangeRate.new(category: 'sell', amount: '56500')
