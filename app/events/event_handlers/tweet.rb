@@ -13,12 +13,12 @@ module EventHandlers
     attr_reader :data
 
     def tweet
-      "#tipodecambio #{type} #{verb} #{difference} colones.\n" \
-      "Valor actual: #{amount}.\n" + '$crc $usd'
+      "#tipodecambio #{type} #{verb} #{difference} $crc.\n" \
+      "Valor actual: #{amount}.\n" + '$usd'
     end
 
     def type
-      data[:category] == 'sell' ? 'Venta' : 'Compra'
+      data[:category] == 'sell' ? 'venta' : 'compra'
     end
 
     def verb
