@@ -13,8 +13,8 @@ module EventHandlers
     attr_reader :data
 
     def tweet
-      "Update: #{type} #{verb} #{difference} colones.\n" \
-      "Valor actual: #{amount}.\n" + '#tipodecambio $crc $usd'
+      "#tipodecambio #{type} #{verb} #{difference} colones.\n" \
+      "Valor actual: #{amount}.\n" + '$crc $usd'
     end
 
     def type
