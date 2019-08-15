@@ -33,12 +33,12 @@ class ExchangeRateSync
     current_time + 60.seconds
   end
 
-  def error(job, exception)
-    # //TODO sentry
+  def error(_job, exception)
+    Raven.capture_exception(exception)
   end
 
   def failure(job)
-    # // TODO sentry
+    Raven.capture_exception(job)
   end
 
   private

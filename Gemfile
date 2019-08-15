@@ -15,6 +15,7 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0.rc2'
 gem 'rails_event_store'
+gem 'sentry-raven'
 gem 'sqlite3', '~> 1.4'
 gem 'twitter'
 
