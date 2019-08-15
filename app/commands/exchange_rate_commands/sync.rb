@@ -18,6 +18,8 @@ module ExchangeRateCommands
 
     private
 
+    attr_reader :last_sell, :last_buy
+
     delegate :new, :categories, to: :ExchangeRate
     delegate :buy, :sell, to: :ExchangeRate, prefix: :exchange_rate
 
@@ -37,8 +39,8 @@ module ExchangeRateCommands
       EventStore.publish(
         Events::ExchangeRate::Synced,
         category: category.to_s,
-        from: send(category),
-        to: current[category]
+        from: colonize(send("last_#{category}")),
+        to: colonize(current[category])
       )
     end
   end
