@@ -8,9 +8,13 @@ jobs:
       - image: circleci/ruby:2.6.3-node-browsers
         environment:
           BUNDLER_VERSION: 2.0.2
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+
       - image: circleci/postgres:9.6-alpine
         environment:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: root
 
     working_directory: ~/repo
 
@@ -41,8 +45,8 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+#      - run: bundle exec rake db:create
+ #     - run: bundle exec rake db:schema:load
 
       # run tests!
 #      - run:
