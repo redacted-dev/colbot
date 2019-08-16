@@ -8,10 +8,9 @@ jobs:
       - image: circleci/ruby:2.6.3-node-browsers
         environment:
           BUNDLER_VERSION: 2.0.2
-      - image: circleci/postgres:9.6.2-alpine
+      - image: circleci/postgres:9.6-alpine
         environment:
-          POSTGRES_USER: root
-          POSTGRES_DB: colonesapp_test
+          POSTGRES_USER: postgres
 
     working_directory: ~/repo
 
