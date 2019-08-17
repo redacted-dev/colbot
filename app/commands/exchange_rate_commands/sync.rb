@@ -10,7 +10,7 @@ module ExchangeRateCommands
 
     def call
       ensure_context_includes :resource
-      return if current[:exchange_rate].nil?
+      context.fail!(message: 'No data fetched from client.') if current[:exchange_rate].nil?
 
       validate_synchrony(category: :buy)
       validate_synchrony(category: :sell)
@@ -24,7 +24,7 @@ module ExchangeRateCommands
     delegate :buy, :sell, to: :ExchangeRate, prefix: :exchange_rate
 
     def current
-      @_current ||= Banking::ExchangeRateSerializer.new(resource).as_json
+      @current ||= Banking::ExchangeRateSerializer.new(resource).as_json
     end
 
     def sell
