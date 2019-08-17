@@ -20,12 +20,23 @@ gem 'snitcher'
 gem 'twitter'
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'figaro'
   gem 'listen'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+end
+
+group :development do
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'rspec-collection_matchers'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
 end
