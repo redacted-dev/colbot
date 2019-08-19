@@ -5,19 +5,23 @@ module Syncable
 
   included do
     def validate_synchrony(category: :buy)
-      if send(category) != current[category]
-        memoize_last category
-        obj = new(
-          category: categories[category],
-          amount: current[category]
-        )
+      return if upstream_equals_stored?(category)
 
-        if obj.save
-          publish_success(category)
-        else
-          context.fail!(message: 'Failed saving record.')
-        end
+      memoize_last category
+      obj = new(
+        category: categories[category],
+        amount: current[category]
+      )
+
+      if obj.save
+        publish_success(category)
+      else
+        context.fail!(message: 'Failed saving record.')
       end
+    end
+
+    def upstream_equals_stored?(category)
+      send(category) == current[category]
     end
 
     def memoize_last(category)
