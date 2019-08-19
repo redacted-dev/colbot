@@ -1,10 +1,7 @@
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-
 version: 2
 jobs:
   build:
     docker:
-      # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/ruby:2.6.3-node-browsers
         environment:
           BUNDLER_VERSION: 2.0.2
@@ -20,13 +17,10 @@ jobs:
 
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - colbot-{{ checksum "Gemfile.lock" }}
+            - colbot-
 
       - run:
           name: Config bundler
@@ -42,28 +36,26 @@ jobs:
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: colbot-{{ checksum "Gemfile.lock" }}
 
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
-      # run tests!
-#      - run:
-#          name: run tests
-#          command: |
-#            mkdir /tmp/test-results
-#            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-#              circleci tests split --split-by=timings)"
-#
-#            bundle exec rspec \
-#              --format progress \
-#              --format RspecJunitFormatter \
-#              --out /tmp/test-results/rspec.xml \
-#              --format progress \
-#              $TEST_FILES
+      - run: bundle exec rake db:setup
 
-      # collect reports
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
