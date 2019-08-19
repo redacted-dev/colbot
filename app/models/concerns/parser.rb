@@ -5,6 +5,7 @@ module Parser
 
   included do
     # // TODO enhance
+    # rubocop:disable Metrics/LineLength
     def parse_bac_response
       h = Hash.from_xml(object.exchange_rate)['Envelope']['Body']['SOAP_Domain_Response_Msg']['body']['exchRatesBean']['exchangeRates']['exchRateBean'].second.values.second.values.flatten
 
@@ -19,5 +20,6 @@ module Parser
 
       h.compact
     end
+    # rubocop:enable Metrics/LineLength
   end
 end

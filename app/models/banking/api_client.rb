@@ -31,11 +31,11 @@ module Banking
         response = Net::HTTP.start(uri.hostname, uri.port, request_options) do |http|
           http.request(request)
         end
-      rescue StandardError => e
-        raise Raven.capture_exception(e)
       rescue OpenSSL::SSL::SSLError => e
         raise Raven.capture_exception(e)
       rescue Net::OpenTimeout => e
+        raise Raven.capture_exception(e)
+      rescue StandardError => e
         raise Raven.capture_exception(e)
       end
 
@@ -49,7 +49,7 @@ module Banking
     attr_reader :uri, :body, :headers
 
     def request
-      @_request ||= Net::HTTP::Post.new(uri)
+      @request ||= Net::HTTP::Post.new(uri)
     end
 
     def handle_error(response)
