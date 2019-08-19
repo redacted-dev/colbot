@@ -1,0 +1,1 @@
+Build: [![CircleCI](https://circleci.com/gh/eat-veggies/colbot.svg?style=svg)](https://circleci.com/gh/eat-veggies/colbot)
