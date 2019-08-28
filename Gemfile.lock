@@ -70,7 +70,7 @@ GEM
     arkency-command_bus (0.4.0)
       thread_safe
     ast (2.4.0)
-    bootsnap (1.4.4)
+    bootsnap (1.4.5)
       msgpack (~> 1.0)
     bounded_context (0.41.0)
     buftok (0.2.0)
