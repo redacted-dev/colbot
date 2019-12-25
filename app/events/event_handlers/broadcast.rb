@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 module EventHandlers
-  class Tweet
+  class Broadcast
     def call(event)
       @data = event.data
 
-      Tweetter.update(tweet: tweet)
+      Tweetter.update(tweet: message)
+      Slacker.update(message: message)
     end
 
     private
 
     attr_reader :data
 
-    def tweet
+    def message
       "#tipodecambio #{type} #{verb} #{difference} $crc.\n" \
-      "Valor actual: #{amount}.\n" + '#bacapp @BACCredomaticCR'
+      "Valor actual: #{amount}.\n"
     end
 
     def type
