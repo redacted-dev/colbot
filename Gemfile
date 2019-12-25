@@ -16,6 +16,7 @@ gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.0'
 gem 'rails_event_store'
 gem 'sentry-raven'
+gem 'slack-notifier'
 gem 'snitcher'
 gem 'twitter'
 
