@@ -5,8 +5,9 @@ module EventHandlers
     def call(event)
       @data = event.data
 
-      Tweetter.update(tweet: message)
       Slacker.update(message: message)
+      # TODO: Fix this. Move to delayed job too
+      # Tweetter.update(tweet: message)
     end
 
     private
@@ -14,16 +15,16 @@ module EventHandlers
     attr_reader :data
 
     def message
-      "#tipodecambio #{type} #{verb} #{difference} $crc.\n" \
-      "Valor actual: #{amount}.\n"
+      "#{type} rate #{verb} #{difference} $crc. " \
+      "Current: #{amount}.\n"
     end
 
     def type
-      data[:category] == 'sell' ? 'venta' : 'compra'
+      data[:category].capitalize
     end
 
     def verb
-      data[:from] < data[:to] ? 'sube' : 'baja'
+      amount_increase? ? 'increases ' : 'decreases'
     end
 
     def difference
@@ -32,6 +33,10 @@ module EventHandlers
 
     def amount
       data[:to]
+    end
+
+    def amount_increase?
+      data[:from] < data[:to]
     end
   end
 end
