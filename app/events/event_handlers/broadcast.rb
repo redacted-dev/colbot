@@ -5,9 +5,9 @@ module EventHandlers
     def call(event)
       @data = event.data
 
-      Slacker.update(message: message)
       # TODO: Fix this. Move to delayed job too
-      # Tweetter.update(tweet: message)
+      Slacker.update(message: message)
+      Tweetter.update(tweet: message)
     end
 
     private
