@@ -6,7 +6,7 @@ RSpec.describe ExchangeRate, type: :model do
   subject { described_class.new(category: category, amount: amount) }
 
   let(:category) { described_class.categories[:buy] }
-  let(:amount) { 100 }
+  let(:amount) { 10 }
 
   describe 'factory' do
     it { is_expected.to be_valid }
