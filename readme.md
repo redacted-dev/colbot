@@ -2,4 +2,4 @@
 
 # Colbot
 
-Fetches and [tweets](https://twitter.com/bac_app) BAC/Credomatic's costa rican exchange rate every now and then.
+Fetches and [tweets](https://twitter.com/stonks_machine) BAC/Credomatic's costa rican exchange rate every now and then.
