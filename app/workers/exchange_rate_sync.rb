@@ -10,7 +10,7 @@ class ExchangeRateSync
   end
 
   def after
-    # Delayed::Job.enqueue ExchangeRateSync.new(bank), queue: 'exchangerate_sync'
+    # Delayed::Job.enqueue ExchangeRateSync.new(bank), queue: 'exchangerate_sync' # hue
   end
 
   def max_attempts
