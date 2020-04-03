@@ -15,16 +15,16 @@ module EventHandlers
     attr_reader :data
 
     def message
-      "#{type} rate #{verb} #{difference} $crc. " \
-      "Current: #{amount}.\n"
+      "#{type} #{verb} #{difference} $crc. " \
+      "Actual: #{amount}."
     end
 
     def type
-      data[:category].capitalize
+      data[:category] == 'sell' ? 'Venta' : 'Compra'
     end
 
     def verb
-      amount_increase? ? 'increases ' : 'decreases'
+      amount_increase? ? 'sube 📈' : 'baja 📉'
     end
 
     def difference
