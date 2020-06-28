@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+
+  time:
+    formats:
+      pj: "%Y%m%d"

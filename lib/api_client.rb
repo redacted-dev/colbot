@@ -52,7 +52,7 @@ class ApiClient
 
   def request_options
     {
-        use_ssl: uri.scheme == 'https'
+      use_ssl: uri.scheme == 'https'
     }
   end
 
