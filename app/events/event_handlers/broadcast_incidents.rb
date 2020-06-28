@@ -15,7 +15,12 @@ module EventHandlers
     def message
       message = "Daily incidents update:\n"
       Incident.where(created_at: today.beginning_of_day..today.end_of_day).each do |incident|
-        message += I18n.t('incident.message', amount: incident.amount, victim: incident.victim, incident: incident.incident)
+        message += I18n.t(
+          'incident.message',
+          amount: incident.amount,
+          victim: incident.victim,
+          incident: incident.incident
+        )
         message += "\n"
       end
 

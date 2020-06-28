@@ -12,9 +12,11 @@ class Incident < ApplicationRecord
       "{ 'pJson': #{pjson} }"
     end
 
+    # rubocop:disable Metrics/LineLength
     def pjson
       "'{\"TN_FechaInicio\":#{date},\"TN_FechaFinal\":#{date},\"TC_Provincias\":\"1\",\"TC_Cantones\":\"0\",\"TC_Distritos\":\"0\",\"TC_Delito\":\"1,2,3,4,5,6\",\"TC_Victima\":\"1,2,3,4,5\",\"TC_Modalidades\":\"58,59,60,61,62,63,64,65,66,90,91\"}'"
     end
+    # rubocop:enable Metrics/LineLength
 
     def headers
       {
