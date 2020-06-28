@@ -9,6 +9,7 @@ exemptLabels:
   - migration 🎫
   - security 🔓
   - vulnerability 🔓
+  - dependencies
 
 # Ignore issues in a milestone
 exemptMilestones: true
