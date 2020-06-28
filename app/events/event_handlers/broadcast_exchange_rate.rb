@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EventHandlers
-  class Broadcast
+  class BroadcastExchangeRate
     def call(event)
       @data = event.data
 

@@ -23,7 +23,7 @@ class EventStore < RailsEventStore::Client
   def initialize
     super
 
-    subscribe EventHandlers::Broadcast, to: [
+    subscribe EventHandlers::BroadcastExchangeRate, to: [
       Events::ExchangeRate::Synced
     ]
   end
