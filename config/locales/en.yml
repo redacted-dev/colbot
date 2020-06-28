@@ -35,3 +35,6 @@ en:
   time:
     formats:
       pj: "%Y%m%d"
+
+  incident:
+    message: "%{amount} %{victim} víctima de %{incident}"

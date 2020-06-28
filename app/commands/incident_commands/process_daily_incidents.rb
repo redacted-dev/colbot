@@ -20,21 +20,28 @@ module IncidentCommands
         context.fail!(message: 'Failed saving incident aggregate') unless incident.save
       end
 
-      
+      publish_success
     end
 
     private
 
+    def publish_success
+      EventStore.publish(
+          Events::Incident::Updated,
+          latest_data
+      )
+    end
+
     def latest_data
-      JSON.parse(client.fetch!)
+      @_latest_data = JSON.parse(client.fetch!)
     end
 
     def client
-      Incident.api_client
+      @_client = Incident.api_client
     end
 
     def today
-      Time.now.in_time_zone(TIMEZONE)
+      @_today = Time.now.in_time_zone(TIMEZONE)
     end
   end
 end
