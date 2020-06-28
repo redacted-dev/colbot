@@ -47,7 +47,7 @@ class ApiClient
   attr_reader :uri, :body, :headers
 
   def request
-    @request ||= Net::HTTP::const_get(@http_method.capitalize).new(uri)
+    @request ||= Net::HTTP.const_get(@http_method.capitalize).new(uri)
   end
 
   def request_options

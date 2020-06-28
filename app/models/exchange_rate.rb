@@ -1,6 +1,6 @@
-  # frozen_string_literal: true
+# frozen_string_literal: true
 
-  class ExchangeRate < ApplicationRecord
+class ExchangeRate < ApplicationRecord
   enum category: {
     buy: 'buy',
     sell: 'sell'

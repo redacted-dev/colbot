@@ -28,7 +28,7 @@ class EventStore < RailsEventStore::Client
     ]
 
     subscribe EventHandlers::BroadcastIncidents, to: [
-        Events::Incident::Updated
+      Events::Incident::Updated
     ]
   end
 end

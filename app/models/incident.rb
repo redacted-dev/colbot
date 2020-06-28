@@ -5,7 +5,7 @@ class Incident < ApplicationRecord
     TIMEZONE = 'America/Costa_Rica'
 
     def api_client
-      ApiClient.new(http_method: :post,uri: ENV['PJ_URL'], body: body, headers: headers).build
+      ApiClient.new(http_method: :post, uri: ENV['PJ_URL'], body: body, headers: headers).build
     end
 
     def body
