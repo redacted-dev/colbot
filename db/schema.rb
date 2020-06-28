@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_031948) do
+ActiveRecord::Schema.define(version: 2020_06_28_172458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 2019_08_13_031948) do
   create_table "exchange_rates", force: :cascade do |t|
     t.integer "amount", null: false
     t.string "category", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "incidents", force: :cascade do |t|
+    t.text "incident"
+    t.text "victim"
+    t.integer "amount", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
