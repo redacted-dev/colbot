@@ -19,7 +19,7 @@ module EventHandlers
           'incident.message',
           amount: incident.amount,
           victim: incident.victim.capitalize,
-          incident: incident.incident.capitalize
+          incident: incident.incident
         )
         message += "\n"
       end
