@@ -13,7 +13,7 @@ module Banking
       private
 
       def api_client
-        @api_client ||= ApiClient.new(uri: URI, body: BODY, headers: headers).build
+        @api_client ||= ApiClient.new(http_method: :post, uri: URI, body: BODY, headers: headers).build
       end
 
       def headers

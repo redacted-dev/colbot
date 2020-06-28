@@ -26,5 +26,9 @@ class EventStore < RailsEventStore::Client
     subscribe EventHandlers::BroadcastExchangeRate, to: [
       Events::ExchangeRate::Synced
     ]
+
+    subscribe EventHandlers::BroadcastIncidents, to: [
+      Events::Incident::Updated
+    ]
   end
 end
