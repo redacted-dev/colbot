@@ -20,7 +20,7 @@ module IncidentCommands
         context.fail!(message: 'Failed saving incident aggregate') unless incident.save
       end
 
-      publish_success
+      publish_success if latest_data.count.positive?
     end
 
     private
