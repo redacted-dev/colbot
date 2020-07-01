@@ -2,19 +2,19 @@
 
 class Tweetter
   class << self
-    def client
+    def client(bot: 'TWITTER')
       Twitter::REST::Client.new do |config|
-        config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
-        config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
-        config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
-        config.access_token_secret = ENV['TWITTER_ACCESS_SECRET']
+        config.consumer_key        = ENV["#{bot}_CONSUMER_KEY"]
+        config.consumer_secret     = ENV["#{bot}_CONSUMER_SECRET"]
+        config.access_token        = ENV["#{bot}_ACCESS_TOKEN"]
+        config.access_token_secret = ENV["#{bot}_ACCESS_SECRET"]
       end
     end
 
-    def update(tweet: nil)
+    def update(tweet: nil, bot: nil)
       return if tweet.nil?
 
-      client.update(tweet)
+      client(bot: bot).update(tweet)
     end
   end
 end

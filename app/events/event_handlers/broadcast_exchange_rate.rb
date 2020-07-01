@@ -5,7 +5,6 @@ module EventHandlers
     def call(event)
       @data = event.data
 
-      # TODO: Fix this. Move to delayed job too
       Slacker.update(message: message)
       Tweetter.update(tweet: message)
     end
