@@ -37,4 +37,4 @@ en:
       pj: "%Y%m%d"
 
   incident:
-    message: "%{amount} %{victim} víctima de %{incident}"
+    message: "%{amount} %{incident} a %{victim}"
