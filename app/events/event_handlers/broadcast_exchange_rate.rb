@@ -7,6 +7,7 @@ module EventHandlers
 
       Slacker.update(message: message)
       Tweetter.update(tweet: message)
+      Tweetter.update(tweet: message, bot: 'WACHI_TW')
     end
 
     private
@@ -15,7 +16,8 @@ module EventHandlers
 
     def message
       "#{type} #{verb} #{difference} $crc. " \
-      "Actual: #{amount}."
+      "Actual: #{amount}.\n" \
+      'BAC $usd'
     end
 
     def type
