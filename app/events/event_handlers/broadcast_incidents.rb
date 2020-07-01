@@ -14,7 +14,7 @@ module EventHandlers
     private
 
     def message
-      message = "Daily incidents update:\n"
+      message = "Ayer en el GAM hubo:\n"
       Incident.where(created_at: during_today).order(amount: :desc, victim: :asc).each do |incident|
         message += I18n.t(
           'incident.message',
