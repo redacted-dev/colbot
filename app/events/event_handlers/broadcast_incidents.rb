@@ -14,12 +14,12 @@ module EventHandlers
     private
 
     def message
-      message = "Ayer en el GAM hubo:\n"
+      message = "Ayer en el GAM:\n"
       Incident.where(created_at: during_today).order(amount: :desc, victim: :asc).each do |incident|
         message += I18n.t(
           'incident.message',
           amount: incident.amount,
-          victim: incident.victim.capitalize,
+          victim: incident.victim,
           incident: incident.incident
         )
         message += "\n"
