@@ -8,13 +8,14 @@ module IncidentCommands
     TIMEZONE = 'America/Costa_Rica'
 
     def call
-      return if Incident.where(created_at: today.beginning_of_day..today.end_of_day).any?
+      return if Incident.where(category: :daily, created_at: today.beginning_of_day..today.end_of_day).any?
 
       latest_data.each do |incident|
         incident = Incident.new(
           incident: incident['TC_Delito'],
           victim: incident['TC_Victima'],
-          amount: incident['TN_Cantidad']
+          amount: incident['TN_Cantidad'],
+          category: 'daily'
         )
 
         context.fail!(message: 'Failed saving incident aggregate') unless incident.save
