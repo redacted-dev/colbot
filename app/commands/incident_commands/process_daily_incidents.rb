@@ -15,7 +15,7 @@ module IncidentCommands
           incident: incident['TC_Delito'],
           victim: incident['TC_Victima'],
           amount: incident['TN_Cantidad'],
-          category: 'daily'
+          category: :daily
         )
 
         context.fail!(message: 'Failed saving incident aggregate') unless incident.save
