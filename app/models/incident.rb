@@ -29,6 +29,11 @@ class Incident < ApplicationRecord
     end
   end
 
+  enum type: {
+    daily: 'daily',
+    weekly: 'weekly'
+  }, _prefix: :type
+
   validates :amount, presence: true
   validates :incident, presence: true
   validates :victim, presence: true
