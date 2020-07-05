@@ -4,7 +4,9 @@ class Incident < ApplicationRecord
   class << self
     TIMEZONE = 'America/Costa_Rica'
 
-    def api_client
+    def api_client(**kwargs)
+      @_start_date = kwargs[:start]
+      @_end_date = kwargs[:end]
       ApiClient.new(http_method: :post, uri: ENV['PJ_URL'], body: body, headers: headers).build
     end
 
@@ -14,7 +16,7 @@ class Incident < ApplicationRecord
 
     # rubocop:disable Metrics/LineLength
     def pjson
-      "'{\"TN_FechaInicio\":#{date},\"TN_FechaFinal\":#{date},\"TC_Provincias\":\"2,4,1\",\"TC_Cantones\":\"0\",\"TC_Distritos\":\"0\",\"TC_Delito\":\"1,2,3,4,5,6\",\"TC_Victima\":\"1,2,3,4,5\",\"TC_Modalidades\":\"0\"}'"
+      "'{\"TN_FechaInicio\":#{formatted_date(start_date)},\"TN_FechaFinal\":#{formatted_date(end_date)},\"TC_Provincias\":\"2,4,1\",\"TC_Cantones\":\"0\",\"TC_Distritos\":\"0\",\"TC_Delito\":\"1,2,3,4,5,6\",\"TC_Victima\":\"1,2,3,4,5\",\"TC_Modalidades\":\"0\"}'"
     end
     # rubocop:enable Metrics/LineLength
 
@@ -24,8 +26,16 @@ class Incident < ApplicationRecord
       }
     end
 
-    def date
-      I18n.l(1.day.ago.in_time_zone(TIMEZONE), format: :pj)
+    def start_date
+      @_start_date ||= 1.day.ago
+    end
+
+    def end_date
+      @_end_date ||= 1.day.ago
+    end
+
+    def formatted_date(date)
+      I18n.l(date.in_time_zone(TIMEZONE), format: :pj)
     end
   end
 
