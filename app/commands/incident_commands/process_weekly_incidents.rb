@@ -5,15 +5,19 @@ module IncidentCommands
     include Interactor
     include Ensure
 
-    TIMEZONE = 'America/Costa_Rica'
+    delegate :start_date, :end_date, to: :context
 
     def call
-      latest_data.each do |incident|
+      ensure_context_includes :start_date, :end_date
+
+      data.each do |incident|
         incident = Incident.new(
-            incident: incident['TC_Delito'],
-            victim: incident['TC_Victima'],
-            amount: incident['TN_Cantidad'],
-            type: Incident.types[:weekly]
+          incident: incident['TC_Delito'],
+          victim: incident['TC_Victima'],
+          amount: incident['TN_Cantidad'],
+          category: :weekly,
+          started_at: start_date,
+          ended_at: end_date
         )
 
         context.fail!(message: 'Failed saving incident aggregate') unless incident.save
@@ -22,17 +26,12 @@ module IncidentCommands
 
     private
 
-    def latest_data
+    def data
       @_latest_data = JSON.parse(client.fetch!)
     end
 
     def client
-      @_client = Incident.api_client
-    end
-
-    def today
-      @_today = Time.now.in_time_zone(TIMEZONE)
+      @_client = Incident.api_client(start_date: start_date, end_date: end_date)
     end
   end
 end
-

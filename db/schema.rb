@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_174008) do
+ActiveRecord::Schema.define(version: 2020_07_05_181354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -63,9 +63,9 @@ ActiveRecord::Schema.define(version: 2020_07_05_174008) do
     t.integer "amount", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "type", default: "daily"
     t.datetime "started_at"
     t.datetime "ended_at"
+    t.string "category"
   end
 
 end

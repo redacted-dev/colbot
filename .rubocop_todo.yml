@@ -99,3 +99,7 @@ Metrics/LineLength:
   Exclude:
     - 'db/migrate/*'
     - 'bin/*'
+
+# Memoized methods whose instance variable name does not match the method name.
+Naming/MemoizedInstanceVariableName:
+  Enabled: false

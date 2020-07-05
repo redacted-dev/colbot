@@ -5,8 +5,8 @@ class Incident < ApplicationRecord
     TIMEZONE = 'America/Costa_Rica'
 
     def api_client(**kwargs)
-      @_start_date = kwargs[:start]
-      @_end_date = kwargs[:end]
+      @start_date = kwargs[:start_date]
+      @end_date = kwargs[:end_date]
       ApiClient.new(http_method: :post, uri: ENV['PJ_URL'], body: body, headers: headers).build
     end
 
@@ -27,11 +27,11 @@ class Incident < ApplicationRecord
     end
 
     def start_date
-      @_start_date ||= 1.day.ago
+      @start_date ||= 1.day.ago
     end
 
     def end_date
-      @_end_date ||= 1.day.ago
+      @end_date ||= 1.day.ago
     end
 
     def formatted_date(date)
@@ -39,10 +39,10 @@ class Incident < ApplicationRecord
     end
   end
 
-  enum type: {
+  enum category: {
     daily: 'daily',
     weekly: 'weekly'
-  }, _prefix: :type
+  }, _prefix: :category
 
   validates :amount, presence: true
   validates :incident, presence: true

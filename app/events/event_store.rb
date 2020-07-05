@@ -30,5 +30,9 @@ class EventStore < RailsEventStore::Client
     subscribe EventHandlers::BroadcastIncidents, to: [
       Events::Incident::Updated
     ]
+
+    subscribe EventHandlers::BroadcastWeeklyIncidents, to: [
+      Events::Incident::WeeklyUpdated
+    ]
   end
 end

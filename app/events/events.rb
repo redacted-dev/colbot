@@ -7,5 +7,6 @@ module Events
 
   module Incident
     class Updated < RailsEventStore::Event; end
+    class WeeklyUpdated < RailsEventStore::Event; end
   end
 end
