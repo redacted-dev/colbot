@@ -16,7 +16,7 @@ class Incident < ApplicationRecord
 
     # rubocop:disable Metrics/LineLength
     def pjson
-      "'{\"TN_FechaInicio\":#{formatted_date(start_date)},\"TN_FechaFinal\":#{formatted_date(end_date)},\"TC_Provincias\":\"2,4,1\",\"TC_Cantones\":\"0\",\"TC_Distritos\":\"0\",\"TC_Delito\":\"1,2,3,4,5,6\",\"TC_Victima\":\"1,2,3,4,5\",\"TC_Modalidades\":\"0\"}'"
+      "'{\"TN_FechaInicio\":#{formatted_date(start_date)},\"TN_FechaFinal\":#{formatted_date(end_date)},\"TC_Provincias\":\"2,3,4,1\",\"TC_Cantones\":\"201,205,208,301,302,303,306,307,308,401,402,403,404,405,406,407,408,409,101,102,103,106,107,108,109,110,111,113,114,115,118\",\"TC_Distritos\":\"0\",\"TC_Delito\":\"1,2,3,4,5,6\",\"TC_Victima\":\"1,2,3,4,5\",\"TC_Modalidades\":\"0\"}'"
     end
     # rubocop:enable Metrics/LineLength
 

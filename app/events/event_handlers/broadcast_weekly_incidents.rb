@@ -4,17 +4,17 @@ module EventHandlers
   class BroadcastWeeklyIncidents
     TIMEZONE = 'America/Costa_Rica'
 
-    HISTORIC_END_DATE = 2.weeks.ago.in_time_zone(TIMEZONE).beginning_of_day
-    HISTORIC_START_DATE = HISTORIC_END_DATE - 1.week
+    HISTORIC_START_DATE = 3.weeks.ago.in_time_zone(TIMEZONE).beginning_of_day
+    HISTORIC_END_DATE = 2.weeks.ago.in_time_zone(TIMEZONE).beginning_of_day - 1.day
 
-    CURRENT_END_DATE = 1.week.ago.in_time_zone(TIMEZONE).beginning_of_day
-    CURRENT_START_DATE = CURRENT_END_DATE - 1.week
+    CURRENT_START_DATE = 2.weeks.ago.in_time_zone(TIMEZONE).beginning_of_day
+    CURRENT_END_DATE = 1.week.ago.in_time_zone(TIMEZONE).beginning_of_day - 1.day
 
     def call(event)
       @data = event.data
 
       Slacker.update(message: message)
-      Tweetter.update(tweet: message, bot: 'WACHI_TW')
+      # Tweetter.update(tweet: message, bot: 'WACHI_TW')
     end
 
     private
@@ -67,13 +67,15 @@ module EventHandlers
 
       if current_amount.positive?
         percentage = ((1 - (historic_amount / current_amount)) * 100).round(2)
-        "#{add_arrow(percentage)}#{percentage.abs}%"
+        "#{historic_amount.to_i} => #{current_amount.to_i} (#{add_arrow(percentage)}#{percentage.abs}%)"
       else
-        "#{historic_amount.to_i} => 0"
+        "#{historic_amount.to_i} => 0 (-100%)"
       end
     end
 
     def add_arrow(value)
+      return if value.zero?
+
       value.positive? ? '+' : '-️'
     end
 

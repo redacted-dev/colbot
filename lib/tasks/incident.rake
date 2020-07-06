@@ -12,8 +12,8 @@ namespace :incident do
     cmd = nil # Avoid NameError
 
     2.times do |n|
-      end_date = (n + 1).weeks.ago.in_time_zone(TIMEZONE).beginning_of_day
-      start_date = end_date - 1.week
+      start_date = (n + 2).weeks.ago.in_time_zone(TIMEZONE).beginning_of_day
+      end_date = (n + 1).weeks.ago.in_time_zone(TIMEZONE).beginning_of_day - 1.day
 
       next if Incident.where(category: :weekly, started_at: start_date, ended_at: end_date).any?
 
