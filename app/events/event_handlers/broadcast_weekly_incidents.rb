@@ -66,7 +66,7 @@ module EventHandlers
       current_amount = current_records.where(incident: incident).sum(:amount).to_f
 
       if current_amount.positive?
-        percentage = ((1 - (historic_amount / current_amount)) * 100).round(2)
+        percentage = (((current_amount / historic_amount) - 1) * 100).round(2)
         "#{historic_amount.to_i} => #{current_amount.to_i} (#{add_arrow(percentage)}#{percentage.abs}%)"
       else
         "#{historic_amount.to_i} => 0 (-100%)"
