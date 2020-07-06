@@ -14,7 +14,7 @@ class Tweetter
     def update(tweet: nil, bot: nil)
       return if tweet.nil?
 
-      client(bot: bot).update(tweet)
+      client(bot: bot).update(tweet) unless ENV['PANICK_MODE']
     end
   end
 end
