@@ -14,7 +14,7 @@ module EventHandlers
       @data = event.data
 
       Slacker.update(message: message)
-      # Tweetter.update(tweet: message, bot: 'WACHI_TW')
+      Tweetter.update(tweet: message, bot: 'WACHI_TW')
     end
 
     private
