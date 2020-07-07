@@ -38,7 +38,7 @@ module IncidentCommands
     end
 
     def client
-      @_client = Incident.api_client
+      @_client = Incident.api_client(start_date: 1.day.ago, end_date: 1.day.ago)
     end
 
     def today
