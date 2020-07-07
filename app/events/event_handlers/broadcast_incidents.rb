@@ -15,7 +15,7 @@ module EventHandlers
 
     def message
       message = "Ayer en el GAM:\n"
-      Incident.where(created_at: during_today).order(amount: :desc, victim: :asc).each do |incident|
+      Incident.where(category: :daily, created_at: during_today).order(amount: :desc, victim: :asc).each do |incident|
         message += I18n.t(
           'incident.message',
           amount: incident.amount,
