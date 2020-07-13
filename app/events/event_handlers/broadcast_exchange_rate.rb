@@ -23,7 +23,7 @@ module EventHandlers
     def message
       "#{type} #{verb} #{difference} $crc. " \
       "Actual: #{amount}.\n" \
-      'BAC $usd'
+      '#BAC $usd'
     end
 
     def type
