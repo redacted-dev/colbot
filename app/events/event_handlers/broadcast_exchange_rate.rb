@@ -6,7 +6,13 @@ module EventHandlers
       @data = event.data
 
       Slacker.update(message: message)
-      Tweetter.update(tweet: message, bot: 'TWITTER')
+
+      begin
+        Tweetter.update(tweet: message, bot: 'TWITTER')
+      rescue Twitter::Error::BadRequest => e
+        Raven.capture_exception(e)
+      end
+
       Tweetter.update(tweet: message, bot: 'WACHI_TW')
     end
 
@@ -17,7 +23,7 @@ module EventHandlers
     def message
       "#{type} #{verb} #{difference} $crc. " \
       "Actual: #{amount}.\n" \
-      'BAC $usd'
+      '#BAC $usd'
     end
 
     def type

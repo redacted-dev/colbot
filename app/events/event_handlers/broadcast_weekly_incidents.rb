@@ -29,8 +29,8 @@ module EventHandlers
     def header
       format = '%d/%m'
 
-      "En el GAM:\n#{HISTORIC_START_DATE.strftime(format)} al #{HISTORIC_END_DATE.strftime(format)} vs " \
-      "#{CURRENT_START_DATE.strftime(format)} al #{CURRENT_END_DATE.strftime(format)}\n\n" \
+      "#GAM #PJCR:\n#{HISTORIC_START_DATE.strftime(format)} a #{HISTORIC_END_DATE.strftime(format)} => " \
+      "#{CURRENT_START_DATE.strftime(format)} a #{CURRENT_END_DATE.strftime(format)}\n\n" \
     end
 
     def body
