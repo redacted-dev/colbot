@@ -29,7 +29,7 @@ module IncidentCommands
     def publish_success
       EventStore.publish(
         Events::Incident::Updated,
-        latest_data
+        {}
       )
     end
 
