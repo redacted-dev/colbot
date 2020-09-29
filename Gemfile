@@ -8,6 +8,7 @@ ruby '2.6.3'
 gem 'active_model_serializers'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'daemons'
+gem 'discordrb'
 gem 'delayed_job_active_record'
 gem 'interactor', '~> 3.0'
 gem 'jbuilder', '~> 2.7'
