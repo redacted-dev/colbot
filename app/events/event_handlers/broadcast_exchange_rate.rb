@@ -6,13 +6,8 @@ module EventHandlers
       @data = event.data
 
       Slacker.update(message: message)
-
-      begin
-        Tweetter.update(tweet: message, bot: 'TWITTER')
-      rescue Twitter::Error::BadRequest => e
-        Raven.capture_exception(e)
-      end
-
+      DiscordClient.update(text: message)
+      Tweetter.update(tweet: message, bot: 'TWITTER')
       Tweetter.update(tweet: message, bot: 'WACHI_TW')
     end
 
