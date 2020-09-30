@@ -14,7 +14,7 @@ module EventHandlers
       @data = event.data
 
       Slacker.update(message: message)
-      Tweetter.update(tweet: message, bot: 'WACHI_TW')
+      DiscordClient.update(text: message, webhook_url: ENV['DISCORD_WEBHOOK_URL_PJCR'])
     end
 
     private
@@ -29,7 +29,7 @@ module EventHandlers
     def header
       format = '%d/%m'
 
-      "#GAM #PJCR:\n#{HISTORIC_START_DATE.strftime(format)} a #{HISTORIC_END_DATE.strftime(format)} => " \
+      "#{HISTORIC_START_DATE.strftime(format)} a #{HISTORIC_END_DATE.strftime(format)} => " \
       "#{CURRENT_START_DATE.strftime(format)} a #{CURRENT_END_DATE.strftime(format)}\n\n" \
     end
 
