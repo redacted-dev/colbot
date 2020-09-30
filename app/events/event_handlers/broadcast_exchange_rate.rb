@@ -6,7 +6,7 @@ module EventHandlers
       @data = event.data
 
       Slacker.update(message: message)
-      DiscordClient.update(text: message)
+      DiscordClient.update(text: message, webhook_url: ENV['DISCORD_WEBHOOK_URL'])
       Tweetter.update(tweet: message, bot: 'TWITTER')
       Tweetter.update(tweet: message, bot: 'WACHI_TW')
     end
