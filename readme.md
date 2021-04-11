@@ -1,5 +1,10 @@
-[![CircleCI](https://circleci.com/gh/eat-veggies/colbot.svg?style=svg)](https://circleci.com/gh/eat-veggies/colbot)
+## Hello there 👋 🤖
 
-# Colbot
+This is a rails app which uses Rake to fetch and post exchange rate fluctuations on USD against CRC (Costa Rican Colon).
+It leverages some active record modelling, some API client implementation and Event Dispatch/Subscribe to do so. Have a looksie
 
-Fetches and [tweets](https://twitter.com/stonks_machine) BAC/Credomatic's costa rican exchange rate every now and then.
+```ruby
+bundle exe rake exchange_rate:kick
+```
+
+Powered by Heroku ([link](https://bac-app.herokuapp.com/))
